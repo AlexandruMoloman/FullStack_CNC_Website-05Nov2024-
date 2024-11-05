@@ -1,0 +1,74 @@
+import React, { useState, useEffect } from 'react';
+import { Container, Button, Form, Card } from 'react-bootstrap';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
+const Notizie = () => {
+  const [posts, setPosts] = useState([]); // Состояние для постов
+  const [hasMore, setHasMore] = useState(true); // Для lazy load
+
+  useEffect(() => {
+    // Получение постов при загрузке страницы
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    // Загрузка постов из базы данных
+    // Например, через API
+    // const newPosts = await fetch('/api/posts');
+    // setPosts([...posts, ...newPosts]);
+  };
+
+  const handleLike = (postId) => {
+    // Обработка клика по сердечку
+  };
+
+  const handleAddComment = (postId, comment) => {
+    // Добавление комментария
+  };
+
+  const handleDeletePost = (postId) => {
+    // Удаление поста
+  };
+
+  return (
+    <section>
+      <Container fluid className="py-5">
+        <InfiniteScroll
+          dataLength={posts.length}
+          next={fetchPosts}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+          endMessage={<p>No more posts</p>}>
+          {posts.map((post) => (
+            <Card key={post.id} style={{ marginBottom: '20px' }}>
+              <Card.Body>
+                {post.image && <img src={post.image} alt="Post" />}
+                {post.video && <video controls src={post.video} />}
+                <Card.Text>{post.text}</Card.Text>
+
+                <Button onClick={() => handleLike(post.id)}>❤️ {post.likes}</Button>
+                <Form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const comment = e.target.elements.comment.value;
+                    handleAddComment(post.id, comment);
+                  }}>
+                  <Form.Group>
+                    <Form.Control type="text" name="comment" placeholder="Add a comment" />
+                  </Form.Group>
+                  <Button type="submit">Submit</Button>
+                </Form>
+
+                <Button variant="danger" onClick={() => handleDeletePost(post.id)}>
+                  Delete Post
+                </Button>
+              </Card.Body>
+            </Card>
+          ))}
+        </InfiniteScroll>
+      </Container>
+    </section>
+  );
+};
+
+export default Notizie;

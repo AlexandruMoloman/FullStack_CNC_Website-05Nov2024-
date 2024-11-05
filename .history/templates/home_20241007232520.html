@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <title>Home - My Flask App</title>
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .gradient-bg {
+        background: linear-gradient(to right, red, black);
+        min-height: 95vh;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">MyApp</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/technologia">Technologia</a></li>
+          <li class="nav-item"><a class="nav-link" href="/prodotti">Prodotti</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contatti">Contatti</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="slider" class="container">{% include 'slider.html' %}</div>
+
+    <div class="container py-4">
+      <h1 style="border-left: 5px darkRed solid; margin-top: 2.7rem; padding-left: 1rem">
+        Informazioni
+      </h1>
+    </div>
+
+    <div class="container gradient-bg py-5">
+      <h1 style="border-left: 5px darkRed solid">Avanzamento</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <p style="font-size: 1.25rem">Some text Some text Some text ...</p>
+        </div>
+        <div class="col-md-6" style="padding-top: 0rem">
+          <img
+            src="{{ url_for('static', filename='biglia.png') }}"
+            alt="Biglia"
+            class="img-fluid"
+            style="width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-md-6">
+          <img
+            src="{{ url_for('static', filename='azienda.jpg') }}"
+            alt="Azienda"
+            class="img-fluid mt-2"
+            style="width: 100%"
+          />
+        </div>
+        <div class="col-md-6" style="padding-top: 2rem">
+          <h2>ROEMA: Mecanica di Precisione</h2>
+          <p style="font-size: 1.25rem">
+            Anche un piccolo pezzo può fare la differenza: è una questione di frazioni di
+            millimetro, di qualità dei materiali, di customizzazione...
+          </p>
+          <ul class="fs-4">
+            <li>Tornitura e fresatura di altissima precisione con macchine fino a 9 assi</li>
+            <li>Trattamenti superficiali</li>
+            <li>
+              Lavorazione di acciaio inossidabile, ottone, bronzo, alluminio, leghe di ferro-nichel
+              e titanio
+            </li>
+          </ul>
+          <p>
+            <b>Tutti i lotti sono sottoposti a controlli di qualità con attrezzatura specifica</b>
+          </p>
+          <p>Su richiesta viene effettuata la campionatura del pezzo finale</p>
+          <button class="btn btn-primary fs-4" onclick="alert('Button clicked!');">
+            Scopri di Piu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container gradient-bg py-5">
+      <div class="row">
+        <div class="col-md-6 text-center py-5">
+          <h3 class="fw-bold mt-5 pt-5">OFFICINE RO.E.MA. MECCANICA DI PRECISIONE</h3>
+          <p class="fw-bold">P. IVA: IT01772580336</p>
+          <p class="fw-bold">Tel: +39 035.5682454</p>
+          <p class="fw-bold">
+            Sede operativa: via Ca’ Fittavoli, 20-21 – 24030 Barzana (BG) Italia
+          </p>
+        </div>
+        <div class="col-md-6">
+          <!-- Код для карты, если есть -->
+        </div>
+      </div>
+    </div>
+    <!-- Вставляем компонент Block -->
+    {% include 'block.html' %}
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</html>
